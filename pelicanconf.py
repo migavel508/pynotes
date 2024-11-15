@@ -17,10 +17,10 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ("Pelican", "https://getpelican.com/"),
-    ("Python.org", "https://www.python.org/"),
-    ("Jinja2", "https://palletsprojects.com/p/jinja/"),
-    ("You can modify those links in your config file", "#"),
+    # ("Pelican", "https://getpelican.com/"),
+    # ("Python.org", "https://www.python.org/"),
+    # ("Jinja2", "https://palletsprojects.com/p/jinja/"),
+    # ("You can modify those links in your config file", "#"),
 )
 
 # Social widget
@@ -35,3 +35,5 @@ DEFAULT_PAGINATION = 10
 # RELATIVE_URLS = True
 
 THEME = 'themes/pelican-themes/zurb-F5-basic'
+
+IGNORE_FILES = [".*", "*.swp", "*~"]
