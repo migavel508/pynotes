@@ -1,33 +1,44 @@
-
-from datetime import datetime
 import os
 import subprocess
 from pathlib import Path
+from datetime import datetime
 
 # Directories
 NOTEBOOK_DIR = "./notebooks"  # Directory containing .ipynb files
 OUTPUT_DIR = "./content"     # Directory for .md files (Pelican content directory)
 
-# Step 1: Convert notebooks to Markdown
+# Step 1: Convert notebooks to Markdown recursively
 def convert_notebooks_to_markdown(notebook_dir, output_dir):
     notebook_dir = Path(notebook_dir)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    for notebook in notebook_dir.glob("*.ipynb"):
+    for notebook in notebook_dir.rglob("*.ipynb"):  # Recursively find .ipynb files
+        # Skip hidden directories like .ipynb_checkpoints
+        if any(part.startswith('.') for part in notebook.parts):
+            print(f"Skipping hidden folder or file: {notebook}")
+            continue
+
         print(f"Converting {notebook} to markdown...")
+        # Determine relative path for content organization
+        relative_path = notebook.relative_to(notebook_dir)
+        output_subdir = output_dir / relative_path.parent
+        output_subdir.mkdir(parents=True, exist_ok=True)
+
+        # Convert notebook to markdown
         cmd = [
             "jupyter",
             "nbconvert",
             "--to",
             "markdown",
             "--output-dir",
-            str(output_dir),
+            str(output_subdir),
             str(notebook),
         ]
         subprocess.run(cmd, check=True)
+
         # Add metadata to the generated Markdown file
-        add_metadata_to_markdown(output_dir / f"{notebook.stem}.md")
+        add_metadata_to_markdown(output_subdir / f"{notebook.stem}.md")
 
 # Step 2: Add metadata to Markdown
 def add_metadata_to_markdown(markdown_file):
@@ -38,7 +49,7 @@ def add_metadata_to_markdown(markdown_file):
     metadata = f"""---
 title: {markdown_file.stem.replace('_', ' ').title()}
 date: {formatted_date}
-author: Raja CSP
+author: Your Name
 ---
 """
     print(f"Adding metadata to {markdown_file}...")
@@ -61,4 +72,3 @@ if __name__ == "__main__":
     generate_site_with_pelican(OUTPUT_DIR)
 
     print("Site generated successfully!")
-

@@ -1,7 +1,7 @@
 ---
 title: One
 date: 2024-11-15
-author: Raja CSP
+author: Your Name
 ---
 
 ```python
