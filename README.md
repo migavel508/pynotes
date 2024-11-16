@@ -22,17 +22,19 @@
 ```
 go to pelicanconf.py
 
-change the necessary settings
-
-
-FOLDER_NAME     = "<repo name>"
+change the necessary changes to update:
+    AUTHOR
+    SITENAME
+    GITHUB_USERNAME
+    LINKS
+    SOCIAL
 ```
 
 ### Verify Local
 ```
-pelican content
+pelican content local
 
-pelican listen
+PELICAN_ENV=local pelican content
     this will run the local server
     http://127.0.0.1:8000
 ```

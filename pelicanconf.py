@@ -2,6 +2,7 @@
 
 AUTHOR          = 'raja'
 SITENAME        = 'My Notes'
+GITHUB_USERNAME = 'tactlabs'
 
 
 # Blogroll
@@ -15,19 +16,30 @@ SOCIAL = (
     ("LinkedIn", "<linkedin handle>"),
 )
 
-######## Advanced Settings (not recommended to to edited) #############
+######## Advanced Settings (not recommended to to edited; take your own risk to touch the settings below) #############
 
 import os
 from git import Repo
+import sys
 
 # Get the current repository name dynamically
 repo = Repo(os.getcwd())
 FOLDER_NAME = os.path.basename(repo.working_dir)
 
-# FOLDER_NAME     = "sigpytest"
+# Check if the 'local' argument is provided
+if os.getenv("PELICAN_ENV") == "local":
+    # Local settings
+    SITEURL         = ''
+    RELATIVE_URLS   = True
+    print("Running Pelican in LOCAL mode")
+else:
+    # Remote settings for GitHub Pages
+    SITEURL         = f'https://{GITHUB_USERNAME}.github.io/{FOLDER_NAME}'
+    RELATIVE_URLS   = False
+    print(f"Running Pelican in REMOTE mode with SITEURL: {SITEURL}")
 
 # siteurl format: 'https://<username/orgname>.github.io/<reponame>'
-SITEURL         = f'https://tactlabs.github.io/{FOLDER_NAME}'
+# SITEURL         = f'https://tactlabs.github.io/{FOLDER_NAME}'
 
 
 OUTPUT_PATH     = 'docs'
