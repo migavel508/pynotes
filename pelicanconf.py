@@ -7,7 +7,8 @@ SITEURL         = f'https://tactlabs.github.io/{FOLDER_NAME}'
 
 AUTHOR          = 'raja'
 SITENAME        = 'My Notes'
-SITEURL         = ""
+
+OUTPUT_PATH     = 'docs'
 
 PATH            = "content"
 TIMEZONE        = 'Europe/Rome'
@@ -39,17 +40,5 @@ RELATIVE_URLS = False
 
 THEME               = 'themes/zurb-F5-basic'
 
-# URL settings (include folder name in URLs)
-ARTICLE_URL = f'{FOLDER_NAME}/{{slug}}.html'
-ARTICLE_SAVE_AS = '{slug}.html'
+IGNORE_FILES = [".*", "*.swp", "*~"]  # Ignore hidden files and temporary files
 
-PAGE_URL = f'{FOLDER_NAME}/{{slug}}.html'
-PAGE_SAVE_AS = '{slug}.html'
-
-CATEGORY_URL = f'{FOLDER_NAME}/category/{{slug}}.html'
-CATEGORY_SAVE_AS = 'category/{slug}.html'
-
-TAG_URL = f'{FOLDER_NAME}/tag/{{slug}}.html'
-TAG_SAVE_AS = 'tag/{slug}.html'
-
-ARCHIVES_SAVE_AS = 'archives.html'  # Keep archives in root
