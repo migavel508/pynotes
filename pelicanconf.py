@@ -1,8 +1,8 @@
 
 
-AUTHOR          = 'raja'
-SITENAME        = 'My Notes'
-GITHUB_USERNAME = 'tactlabs'
+AUTHOR          = '<your name>'
+SITENAME        = '<title>'
+GITHUB_USERNAME = 'tactlabs' # use your username
 
 
 # Blogroll
