@@ -32,9 +32,9 @@ change the necessary changes to update:
 
 ### Verify Local
 ```
-pelican content local
-
 PELICAN_ENV=local pelican content
+
+pelican --listen
     this will run the local server
     http://127.0.0.1:8000
 ```
