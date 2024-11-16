@@ -20,7 +20,6 @@ SOCIAL = (
 
 import os
 from git import Repo
-import sys
 
 # Get the current repository name dynamically
 repo = Repo(os.getcwd())
