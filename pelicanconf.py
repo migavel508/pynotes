@@ -1,7 +1,7 @@
 
 
-AUTHOR          = '<your name>'
-SITENAME        = '<title>'
+AUTHOR          = '<your name>'  # use your name
+SITENAME        = 'title' # use title
 GITHUB_USERNAME = 'tactlabs' # use your username
 
 
