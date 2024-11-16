@@ -15,7 +15,15 @@
 4. Start adding new notebooks under `notebooks` folder
 
 5. run this
-    python convert_to_site.py
+    python make.py
+```
+
+### Verify Local
+```
+pelican content
+
+pelican listen
+    this will run the local server
 ```
 
 ### Publish
