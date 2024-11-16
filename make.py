@@ -1,4 +1,6 @@
+
 import os
+import json
 import subprocess
 from pathlib import Path
 from datetime import datetime
@@ -37,11 +39,33 @@ def convert_notebooks_to_markdown(notebook_dir, output_dir):
         ]
         subprocess.run(cmd, check=True)
 
+        # Count cells in the notebook
+        cell_count = count_cells_in_notebook(notebook)
+
         # Add metadata to the generated Markdown file
-        add_metadata_to_markdown(output_subdir / f"{notebook.stem}.md")
+        # Add metadata and cell count to the Markdown file
+        md_file = output_subdir / f"{notebook.stem}.md"
+        add_metadata_to_markdown(md_file, cell_count)
+
+def count_cells_in_notebook(notebook_path):
+    """
+    Count the number of cells in the .ipynb file.
+    """
+    with open(notebook_path, "r", encoding="utf-8") as f:
+        notebook_data = json.load(f)
+    # Count the cells in the notebook
+    return len(notebook_data.get("cells", []))
 
 # Step 2: Add metadata to Markdown
-def add_metadata_to_markdown(markdown_file):
+def add_metadata_to_markdown(markdown_file, cell_count):
+    """
+    Add metadata and the cell count to the .md file.
+    """
+
+    # Read the current content of the Markdown file
+    with open(markdown_file, "r", encoding="utf-8") as f:
+        content = f.read()
+
     # Get file modification time and format it as YYYY-MM-DD
     file_mtime = datetime.fromtimestamp(Path(markdown_file).stat().st_mtime)
     formatted_date = file_mtime.strftime("%Y-%m-%d")
@@ -50,11 +74,16 @@ def add_metadata_to_markdown(markdown_file):
 title: {markdown_file.stem.replace('_', ' ').title()}
 date: {formatted_date}
 author: Your Name
+cell_count: {cell_count}
 ---
 """
-    print(f"Adding metadata to {markdown_file}...")
-    content = markdown_file.read_text()
-    markdown_file.write_text(metadata + "\n" + content)
+
+    # Append cell count information at the end of the file
+    cell_info = f"\n\n---\n**This notebook contains {cell_count} cells.**\n"
+
+    print(f"Adding metadata and cell count to {markdown_file}...")
+    with open(markdown_file, "w", encoding="utf-8") as f:
+        f.write(metadata + "\n" + content + cell_info)
 
 # Step 3: Generate site with Pelican
 def generate_site_with_pelican(content_dir):

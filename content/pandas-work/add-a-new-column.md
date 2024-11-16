@@ -2,6 +2,7 @@
 title: Add-A-New-Column
 date: 2024-11-16
 author: Your Name
+cell_count: 10
 ---
 
 Add a New Column
@@ -165,3 +166,7 @@ df
 ```python
 
 ```
+
+
+---
+**This notebook contains 10 cells.**
