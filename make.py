@@ -41,11 +41,21 @@ def convert_notebooks_to_markdown(notebook_dir, output_dir):
 
         # Count cells in the notebook
         cell_count = count_cells_in_notebook(notebook)
+        score = calculate_score(cell_count)
 
         # Add metadata to the generated Markdown file
         # Add metadata and cell count to the Markdown file
         md_file = output_subdir / f"{notebook.stem}.md"
-        add_metadata_to_markdown(md_file, cell_count)
+        add_metadata_to_markdown(md_file, cell_count, score)
+
+def calculate_score(cell_count):
+    """
+    Calculate the score based on the number of cells.
+    For every 5 cells, add 5 points. Score starts at 0 if less than 5 cells.
+    """
+    if cell_count < 5:
+        return 0
+    return (cell_count // 5) * 5
 
 def count_cells_in_notebook(notebook_path):
     """
@@ -57,7 +67,7 @@ def count_cells_in_notebook(notebook_path):
     return len(notebook_data.get("cells", []))
 
 # Step 2: Add metadata to Markdown
-def add_metadata_to_markdown(markdown_file, cell_count):
+def add_metadata_to_markdown(markdown_file, cell_count, score):
     """
     Add metadata and the cell count to the .md file.
     """
@@ -75,15 +85,19 @@ title: {markdown_file.stem.replace('_', ' ').title()}
 date: {formatted_date}
 author: Your Name
 cell_count: {cell_count}
+score: {score}
 ---
 """
 
     # Append cell count information at the end of the file
-    cell_info = f"\n\n---\n**This notebook contains {cell_count} cells.**\n"
+    # cell_info = f"\n\n---\n**This notebook contains {cell_count} cells.**\n"
+
+    # Append score information at the end of the file
+    score_info = f"\n\n---\n**Score: {score}**\n"
 
     print(f"Adding metadata and cell count to {markdown_file}...")
     with open(markdown_file, "w", encoding="utf-8") as f:
-        f.write(metadata + "\n" + content + cell_info)
+        f.write(metadata + "\n" + content + score_info)
 
 # Step 3: Generate site with Pelican
 def generate_site_with_pelican(content_dir):
