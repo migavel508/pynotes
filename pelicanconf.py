@@ -28,8 +28,8 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("GitHub", "https://github.com/tactlabs/"),
-    ("LinkedIn", "https://linkedin.com"),
+    ("GitHub", "https://github.com/<yourusername>/"),
+    ("LinkedIn", "<linkedin handle>"),
 )
 
 DEFAULT_PAGINATION = 10
@@ -40,5 +40,5 @@ RELATIVE_URLS = False
 
 THEME               = 'themes/zurb-F5-basic'
 
-IGNORE_FILES = [".*", "*.swp", "*~"]  # Ignore hidden files and temporary files
+IGNORE_FILES        = [".*", "*.swp", "*~"]  # Ignore hidden files and temporary files
 
