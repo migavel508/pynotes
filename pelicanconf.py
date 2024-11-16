@@ -11,7 +11,7 @@ SITENAME        = 'My Notes'
 OUTPUT_PATH     = 'docs'
 
 PATH            = "content"
-TIMEZONE        = 'Europe/Rome'
+TIMEZONE        = 'America/Toronto'
 DEFAULT_LANG    = 'en'
 
 # Feed generation is usually not desired when developing
