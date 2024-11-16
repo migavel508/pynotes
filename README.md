@@ -13,9 +13,6 @@
     pip install -r requirements.txt
 
 4. Start adding new notebooks under `notebooks` folder
-
-5. run this
-    python make.py
 ```
 
 ### Change Settings
@@ -32,6 +29,8 @@ change the necessary changes to update:
 
 ### Verify Local
 ```
+python make.py
+
 PELICAN_ENV=local pelican content
 
 pelican --listen
@@ -41,6 +40,8 @@ pelican --listen
 
 ### Publish
 ```
+python make.py
+
 pelican content
 
 go to GitHub -> Pages -> Source
