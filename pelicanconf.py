@@ -38,10 +38,6 @@ else:
     RELATIVE_URLS   = False
     print(f"Running Pelican in REMOTE mode with SITEURL: {SITEURL}")
 
-# siteurl format: 'https://<username/orgname>.github.io/<reponame>'
-# SITEURL         = f'https://tactlabs.github.io/{FOLDER_NAME}'
-
-
 OUTPUT_PATH     = 'docs'
 PATH            = "content"
 TIMEZONE        = 'America/Toronto'
