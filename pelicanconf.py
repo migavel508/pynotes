@@ -1,8 +1,8 @@
 
 
-AUTHOR          = '<your name>'  # use your name
-SITENAME        = 'title' # use title
-GITHUB_USERNAME = 'tactlabs' # use your username
+AUTHOR          = 'migavel'  # use your name
+SITENAME        = 'My Python Notes' # use title
+GITHUB_USERNAME = 'migavel508' # use your username
 
 
 # Blogroll
@@ -12,7 +12,7 @@ LINKS = (
 
 # Social widget
 SOCIAL = (
-    ("GitHub", "https://github.com/<yourusername>/"),
+    ("GitHub", "https://github.com/migavel508/"),
     ("LinkedIn", "<linkedin handle>"),
 )
 
